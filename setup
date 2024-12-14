@@ -1,0 +1,159 @@
+#!/usr/bin/env bash
+
+CWD=$(cd -- $(dirname $0) && pwd)
+
+function getdistro
+{
+    [ -r /etc/os-release ]                                     \
+        && awk -F= '/^ID=/ {print $2}' /etc/os-release | xargs \
+        || echo linux
+}
+
+function getsucmd
+{
+    for C in sudo doas ; do
+        (command -v $C 2>&1 > /dev/null) \
+            && echo $C && return
+    done
+}
+
+function getaurhelper
+{
+    for C in paru yay aura ; do
+        (command -v $C 2>&1 > /dev/null) \
+            && echo $C && return
+    done
+}
+
+function getpkgs
+{
+    local DISTRO=$1
+    local PROG=$2
+
+    case "$PROG@$DISTRO" in
+        zsh@arch)
+            echo zsh lsd starship pfetch-rs zsh-fast-syntax-highlighting zsh-vi-mode zoxide ripgrep fd
+            ;;
+        zsh@gentoo)
+            echo app-shells/{zsh,starship,zoxide} sys-apps/{lsd,ripgrep,fd}
+            ;;
+        kitty@arch)
+            echo kitty
+            ;;
+        kitty@gentoo)
+            echo x11-terms/kitty
+            ;;
+        nvim@arch)
+            echo neovim
+            ;;
+        nvim@gentoo)
+            echo app-editors/neovim
+            ;;
+        hypr@arch)
+            echo hyprland
+            ;;
+        hypr@gentoo)
+            echo gui-wm/hyprland
+            ;;
+        tmux@arch)
+            echo tmux
+            ;;
+        tmux@gentoo)
+            echo app-misc/tmux
+            ;;
+        *)
+            echo "No package preset for program '$PROG' on $DISTRO" >&2
+            ;;
+    esac
+}
+
+function installpkgs
+{
+    local DISTRO=$1
+    local PKGS=${@:2}
+
+    case $DISTRO in
+        arch)
+            CMD=$(getaurhelper)
+            echo $CMD --needed -S $PKGS
+            ;;
+        gentoo)
+            SU=$(getsucmd)
+            echo $SU emerge --ask $PKGS
+            ;;
+        *)
+            echo "Cannot install packages. ($DISTRO is not supported)" >&2
+            ;;
+    esac
+}
+
+function installprogs
+{
+    local DISTRO=$(getdistro)
+
+    for PROG in $@ ; do
+        PKGS+="$(getpkgs $DISTRO $PROG) "
+    done
+
+    [ ${#PKGS} -gt 1 ] && installpkgs $DISTRO $PKGS
+}
+
+function linkconfig
+{
+    local CONF=${XDG_CONFIG_HOME:-$HOME/.config}
+
+    case $1 in
+        zsh)
+            DST=$CONF/zsh
+            ;;
+        kitty)
+            DST=$CONF/kitty
+            ;;
+        nvim)
+            DST=$CONF/nvim
+            ;;
+        hypr)
+            DST=$CONF/hypr
+            ;;
+        tmux)
+            DST=$CONF/tmux
+            ;;
+        *)
+            ;;
+    esac
+
+    echo ln --symbolic --verbose $CWD/$1 $DST
+}
+
+function linkconfigs
+{
+    for PROG in $@ ; do
+        linkconfig $PROG
+    done
+}
+
+function getallprogs
+{
+    echo zsh kitty nvim hypr tmux
+}
+
+case $1 in
+    install)
+        if [ $2 = all ] ; then
+            installprogs $(getallprogs)
+        else
+            installprogs ${@:2}
+        fi
+        ;;
+    link)
+        if [ $2 = all ] ; then
+            linkconfigs $(getallprogs)
+        else
+            linkconfigs ${@:2}
+        fi
+        ;;
+    everything)
+        $CWD/setup install all
+        $CWD/setup link all
+        ;;
+esac
