@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+function t
+{
+    declare -A OPTS=(
+        [n]='new-session -s'
+        [nn]='new-session'
+        [l]='list-sessions'
+        [a]='attach-session -t'
+        [aa]='attach-session'
+    )
+
+    OPT=(${(z)OPTS[$1]})
+
+    if [ ${OPTS[$1]} ] ; then
+        tmux $OPT ${@:2}
+    else
+        tmux $@
+    fi
+}
+
+t $@

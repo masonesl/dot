@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+function g
+{
+    declare -A OPTS=(
+        [s]='status'
+        [p]='push'
+        [pl]='pull'
+        [a]='add'
+        [cm]='commit --message'
+        [d]='diff'
+        [r]='restore --staged'
+        [cl]='clone'
+        [l]='log'
+    )
+
+    OPT=(${(z)OPTS[$1]})
+
+    if [ ${OPTS[$1]} ] ; then
+        git $OPT ${@:2}
+    else
+        git $@
+    fi
+}
+
+g $@

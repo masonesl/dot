@@ -1,0 +1,17 @@
+source "$ZDOTDIR/alias.zsh"
+
+autoload {cn,g,t,zp}
+
+compdef {g=git,t=tmux}
+
+# configure zvm on source
+ZVM_INIT_MODE=sourcing
+
+zp load https://github.com/Aloxaf/fzf-tab.git
+zp load https://github.com/zsh-users/zsh-syntax-highlighting.git
+zp load https://github.com/jeffreytse/zsh-vi-mode.git
+zp load https://github.com/zsh-users/zsh-autosuggestions.git
+
+eval "$(starship init zsh)"
+eval "$(zoxide init --cmd=c zsh)"
+eval "$(fzf --zsh)"

@@ -1,0 +1,39 @@
+#!/usr/bin/env zsh
+
+function zpinstall
+{
+    local URL=$1
+    local DIR=${ZSH_PLUGIN_HOME:?}/${${1##*/}%%.*}
+
+    [ -d $DIR ] || git clone $URL $DIR >&2
+}
+
+function zpload
+{
+    local PLUG=${ZSH_PLUGIN_HOME:?}/$1/$1.plugin.zsh
+
+    [ -r $PLUG ] && echo $PLUG
+}
+
+function zpupdate
+{
+    local DIR=${ZSH_PLUGIN_HOME:?}/$1
+
+    [ -d $DIR ] && git -C $DIR pull
+}
+
+function zp
+{
+    case $1 in
+        load)
+            zpinstall $2 && zpload ${${2##*/}%%.*}
+            ;;
+        update-all)
+            for PLUG in ${ZSH_PLUGIN_HOME:?}/* ; do
+                zpupdate $(basename $PLUG)
+            done
+            ;;
+    esac
+}
+
+zp $@
