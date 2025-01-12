@@ -137,6 +137,23 @@ function linkconfigs
     done
 }
 
+function selectpreset
+{
+    local PRESET=$1
+    local PRESET_FILE=./hypr/presets/${PRESET:-default}.hl
+
+    [ -f $PRESET_FILE ]                                    \
+        || echo "Hypr preset '$PRESET' does not exist" >&2 \
+        && return
+
+    sed --in-place "s|\(source = \./presets/\).\+|\1$1\.hl|" $PRESET_FILE
+    
+    if [[ $PRESET == excalibur ]] ; then
+        hyprpm add https://github.com/Duckonaut/split-monitor-workspaces
+        hyprpm enable split-monitor-workspaces
+    fi
+}
+
 function getallprogs
 {
     echo zsh kitty nvim hypr tmux extras
@@ -156,6 +173,9 @@ case $1 in
         else
             linkconfigs ${@:2}
         fi
+        ;;
+    preset)
+        selectpreset $2
         ;;
     everything)
         $CWD/setup install all
