@@ -32,10 +32,10 @@ function getpkgs
 
     case "$PROG@$DISTRO" in
         zsh@arch)
-            echo zsh lsd starship pfetch-rs zsh-fast-syntax-highlighting zsh-vi-mode zoxide ripgrep fd
+            echo zsh lsd starship zoxide fzf
             ;;
         zsh@gentoo)
-            echo app-shells/{zsh,starship,zoxide} sys-apps/{lsd,ripgrep,fd}
+            echo app-shells/{zsh,starship,zoxide,fzf}
             ;;
         kitty@arch)
             echo kitty
@@ -44,10 +44,10 @@ function getpkgs
             echo x11-terms/kitty
             ;;
         nvim@arch)
-            echo neovim
+            echo neovim luarocks
             ;;
         nvim@gentoo)
-            echo app-editors/neovim
+            echo app-editors/neovim dev-lua/luarocks
             ;;
         hypr@arch)
             echo hyprland
@@ -61,6 +61,12 @@ function getpkgs
         tmux@gentoo)
             echo app-misc/tmux
             ;;
+        extras@arch)
+            echo lsd ripgrep fd
+            ;;
+        extras@gentoo)
+            echo sys-apps/{lsd,ripgrep,fd}
+            ;;
         *)
             echo "No package preset for program '$PROG' on $DISTRO" >&2
             ;;
@@ -71,15 +77,14 @@ function installpkgs
 {
     local DISTRO=$1
     local PKGS=${@:2}
+    local SU=$(getsucmd)
 
     case $DISTRO in
         arch)
-            CMD=$(getaurhelper)
-            echo $CMD --needed -S $PKGS
+            $(getaurhelper) --needed -S $PKGS
             ;;
         gentoo)
-            SU=$(getsucmd)
-            echo $SU emerge --ask $PKGS
+            $SU emerge --ask $PKGS
             ;;
         *)
             echo "Cannot install packages. ($DISTRO is not supported)" >&2
@@ -95,7 +100,7 @@ function installprogs
         PKGS+="$(getpkgs $DISTRO $PROG) "
     done
 
-    [ ${#PKGS} -gt 1 ] && installpkgs $DISTRO $PKGS
+    [ ${#PKGS} -gt 0 ] && installpkgs $DISTRO $PKGS
 }
 
 function linkconfig
@@ -122,7 +127,7 @@ function linkconfig
             ;;
     esac
 
-    echo ln --symbolic --verbose $CWD/$1 $DST
+    ln --symbolic --verbose $CWD/$1 $DST
 }
 
 function linkconfigs
@@ -134,7 +139,7 @@ function linkconfigs
 
 function getallprogs
 {
-    echo zsh kitty nvim hypr tmux
+    echo zsh kitty nvim hypr tmux extras
 }
 
 case $1 in
