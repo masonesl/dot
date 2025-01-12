@@ -1,0 +1,50 @@
+source = ./vars.hl
+
+# layouts
+bind = $mainMod, M, exec, hyprctl keyword general:layout master
+bind = $mainMod, D, exec, hyprctl keyword general:layout dwindle
+
+# close window
+bind = $mainMod, W, killactive
+
+# apps
+bind = $mainMod, SPACE,  exec, $launcher
+bind = $mainMod, RETURN, exec, $terminal
+
+bind = $mainMod $launchMod, RETURN, exec, [size 50% 50%; float] $terminal
+bind = $mainMod $launchMod, B,      exec, $browser
+bind = $mainMod $launchMod, C,      exec, [float] $calculator
+bind = $mainMod $launchMod, F,      exec, $fileManager
+bind = $mainMod $launchMod, K,      exec, keepassxc
+bind = $mainMod $launchMod, V,      exec, virt-manager
+
+# switch focus
+bind = $mainMod, H, movefocus, l
+bind = $mainMod, J, movefocus, d
+bind = $mainMod, K, movefocus, u
+bind = $mainMod, L, movefocus, r
+
+# move focused window
+bind = $mainMod $moveMod, H, movefocus, l
+bind = $mainMod $moveMod, J, movefocus, d
+bind = $mainMod $moveMod, K, movefocus, u
+bind = $mainMod $moveMod, L, movefocus, r
+
+bindm = $mainMod, mouse:272, movewindow
+
+# resized focused window
+bind   = $mainMod, R, submap, resize
+submap = resize
+
+binde = , H, resizeactive, -$resizeInc 0
+binde = , J, resizeactive, 0  $resizeInc
+binde = , K, resizeactive, 0 -$resizeInc
+binde = , L, resizeactive,  $resizeInc 0
+
+bind   = , catchall, submap, reset
+submap = reset
+
+bindm = $mainMod $moveMod, mouse:272, resizewindow
+
+# navigating workspaces
+exec-once = ../scripts/set_workspace_binds.sh

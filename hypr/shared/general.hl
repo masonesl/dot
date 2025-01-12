@@ -1,0 +1,21 @@
+source = ./rose-pine.hl
+
+general {
+    border_size = 2
+
+    gaps_in   = 8
+    gaps_outs = 12
+
+    col.inactive_border = $muted
+    col.active_border   = $love
+
+    allow_tearing = true
+}
+
+xwayland {
+    force_zero_scaling = true
+}
+
+opengl {
+    force_introspection = true
+}

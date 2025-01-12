@@ -1,0 +1,2 @@
+# TODO: remove systemd dependency
+exec-once = systemctl --user start hyprpolkitagent

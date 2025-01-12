@@ -1,0 +1,11 @@
+$mainMod   = SUPER
+$launchMod = ALT
+$moveMod   = SHIFT
+
+$launcher    = rofi -show drun
+$terminal    = kitty
+$browser     = firefox
+$calculator  = qalculate-gtk
+$fileManager = pcmanfm
+
+$resizeInc = 20
