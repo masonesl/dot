@@ -25,5 +25,10 @@ vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv')
 
 vim.keymap.set('v', 'p', 'p:let @"=@0<CR>')
 
-vim.keymap.set('i', '<C-Tab>', '<ESC>>>' .. vim.opt.shiftwidth:get() .. 'la')
-vim.keymap.set('i', '<C-S-Tab>', '<ESC><<a')
+vim.keymap.set('n', '<Leader>ti', function ()
+    if vim.opt.shiftwidth:get() == 4 then
+        vim.opt.shiftwidth = 2
+    else
+        vim.opt.shiftwidth = 4
+    end
+end)
