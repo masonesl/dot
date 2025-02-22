@@ -1,0 +1,4 @@
+misc:disable_hyprland_logo = true
+input:accel_profile = adaptive
+bind = $mainMod, SPACE, exec, bemenu-run
+input:kb_options = caps:swapescape

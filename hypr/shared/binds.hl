@@ -46,5 +46,20 @@ submap = reset
 
 bindm = $mainMod $moveMod, mouse:272, resizewindow
 
-# navigating workspaces
-exec-once = ../scripts/set_workspace_binds.sh
+bind = $mainMod, 1, $wscmd, 1
+bind = $mainMod, 2, $wscmd, 2
+bind = $mainMod, 3, $wscmd, 3
+bind = $mainMod, 4, $wscmd, 4
+
+bind = $mainMod $moveMod, 1, $wsmovesilentcmd, 1
+bind = $mainMod $moveMod, 2, $wsmovesilentcmd, 2
+bind = $mainMod $moveMod, 3, $wsmovesilentcmd, 3
+bind = $mainMod $moveMod, 4, $wsmovesilentcmd, 4
+
+bind = $mainMod $launchMod, 1, $wsmovecmd, 1
+bind = $mainMod $launchMod, 2, $wsmovecmd, 2
+bind = $mainMod $launchMod, 3, $wsmovecmd, 3
+bind = $mainMod $launchMod, 4, $wsmovecmd, 4
+
+bindle = , XF86MonBrightnessUp,   exec, brightness adjust up
+bindle = , XF86MonBrightnessDown, exec, brightness adjust down

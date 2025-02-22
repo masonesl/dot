@@ -9,4 +9,8 @@ workspace = 2, monitor:$internal, persistent:true
 workspace = 3, monitor:$internal, persistent:true
 workspace = 4, monitor:$internal, persistent:true
 
+$wscmd           = workspace
+$wsmovecmd       = movetoworkspace
+$wsmovesilentcmd = movetoworkspacesilent
+
 source = ./default.hl
