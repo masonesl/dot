@@ -25,12 +25,16 @@ bind = $mainMod, K, movefocus, u
 bind = $mainMod, L, movefocus, r
 
 # move focused window
-bind = $mainMod $moveMod, H, movefocus, l
-bind = $mainMod $moveMod, J, movefocus, d
-bind = $mainMod $moveMod, K, movefocus, u
-bind = $mainMod $moveMod, L, movefocus, r
+bind = $mainMod $moveMod, H, movewindow, l
+bind = $mainMod $moveMod, J, movewindow, d
+bind = $mainMod $moveMod, K, movewindow, u
+bind = $mainMod $moveMod, L, movewindow, r
 
 bindm = $mainMod, mouse:272, movewindow
+
+# floating and fullscreen
+bind = $mainMod         , F, togglefloating
+bind = $mainMod $moveMod, F, fullscreen, 0
 
 # resized focused window
 bind   = $mainMod, R, submap, resize
@@ -46,11 +50,15 @@ submap = reset
 
 bindm = $mainMod $moveMod, mouse:272, resizewindow
 
+# switch workspace
 bind = $mainMod, 1, $wscmd, 1
 bind = $mainMod, 2, $wscmd, 2
 bind = $mainMod, 3, $wscmd, 3
 bind = $mainMod, 4, $wscmd, 4
 
+bind = $mainMod, G, $wscmd, name:game
+
+# move window to workspace
 bind = $mainMod $moveMod, 1, $wsmovesilentcmd, 1
 bind = $mainMod $moveMod, 2, $wsmovesilentcmd, 2
 bind = $mainMod $moveMod, 3, $wsmovesilentcmd, 3
@@ -61,5 +69,11 @@ bind = $mainMod $launchMod, 2, $wsmovecmd, 2
 bind = $mainMod $launchMod, 3, $wsmovecmd, 3
 bind = $mainMod $launchMod, 4, $wsmovecmd, 4
 
+# brightness controls
 bindle = , XF86MonBrightnessUp,   exec, brightness adjust up
 bindle = , XF86MonBrightnessDown, exec, brightness adjust down
+
+# volume controls
+bindle = , XF86AudioRaiseVolume, exec, volume adjust up
+bindle = , XF86AudioLowerVolume, exec, volume adjust down
+bindl  = , XF86AudioMute       , exec, volume toggle-mute

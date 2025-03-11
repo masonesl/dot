@@ -4,7 +4,7 @@ $moveMod   = SHIFT
 
 $launcher    = rofi -show drun
 $terminal    = kitty
-$browser     = firefox
+$browser     = zen-browser
 $calculator  = qalculate-gtk
 $fileManager = pcmanfm
 

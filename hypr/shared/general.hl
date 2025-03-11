@@ -7,7 +7,7 @@ general {
     gaps_out = 12
 
     col.inactive_border = $muted
-    col.active_border   = $love
+    col.active_border   = $iris
 
     allow_tearing = true
 }
