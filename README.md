@@ -4,13 +4,13 @@
 
 Everything needs to be ported over from my old [dotfiles](https://github.com/masonesl/dotfiles.git) repo.
 
-- [ ] zsh
-- [ ] hypr
-- [ ] nvim
+- [x] zsh
+- [x] hypr
+- [x] nvim
 - [ ] rofi
 - [ ] bin
-- [ ] tmux
+- [x] tmux
 - [ ] ags (new, previously used eww)
-- [ ] kitty (new)
+- [x] kitty (new)
 - [ ] starship (new)
 - [ ] waybar (temporary)
