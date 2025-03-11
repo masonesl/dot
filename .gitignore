@@ -1,1 +1,3 @@
 hypr/override.hl
+zsh/.zcompdump
+nvim/lazy-lock.json
