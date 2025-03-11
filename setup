@@ -62,10 +62,10 @@ function getpkgs
             echo app-misc/tmux
             ;;
         extras@arch)
-            echo lsd ripgrep fd
+            echo lsd ripgrep fd bat
             ;;
         extras@gentoo)
-            echo sys-apps/{lsd,ripgrep,fd}
+            echo sys-apps/{lsd,ripgrep,fd,bat}
             ;;
         *)
             echo "No package preset for program '$PROG' on $DISTRO" >&2
@@ -118,16 +118,22 @@ function linkconfig
             DST=$CONF/nvim
             ;;
         hypr)
+            touch $CWD/hypr/override.hl
             DST=$CONF/hypr
             ;;
         tmux)
             DST=$CONF/tmux
             ;;
         *)
+            return
             ;;
     esac
 
-    ln --symbolic --verbose $CWD/$1 $DST
+    if ! [ -e $DST ] ; then
+        ln --symbolic --verbose $CWD/$1 $DST
+    else
+        echo "Not linking '$1' to '$DST' because a file already exists"
+    fi
 }
 
 function linkconfigs
