@@ -2,9 +2,9 @@
 
 function cn
 {
-    pushd $1
+    pushd $1 > /dev/null
     nvim .
-    popd -
+    popd > /dev/null
 }
 
 cn $@
