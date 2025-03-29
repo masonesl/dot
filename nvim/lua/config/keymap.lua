@@ -31,4 +31,5 @@ vim.keymap.set('n', '<Leader>ti', function ()
     else
         vim.opt.shiftwidth = 4
     end
+    print('shiftwidth set to ' .. vim.opt.shiftwidth:get() .. ' spaces')
 end)
