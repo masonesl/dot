@@ -3,8 +3,8 @@ source = ./rose-pine.hl
 general {
     border_size = 2
 
-    gaps_in   = 8
-    gaps_out = 12
+    gaps_in   = 4
+    gaps_out = 8
 
     col.inactive_border = $muted
     col.active_border   = $iris
@@ -14,8 +14,4 @@ general {
 
 xwayland {
     force_zero_scaling = true
-}
-
-opengl {
-    force_introspection = true
 }
