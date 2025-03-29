@@ -1,3 +1,6 @@
 hypr/override.hl
+hypr/hyprland.conf
+
 zsh/.zcompdump
+
 nvim/lazy-lock.json
