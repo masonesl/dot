@@ -1,7 +1,8 @@
 source = ./rose-pine.hl
 
 decoration {
-    rounding = 8
+    rounding       = 8
+    rounding_power = 4
 
     active_opacity   = 0.95
     inactive_opacity = 0.95
@@ -16,7 +17,7 @@ decoration {
 
     blur {
         size   = 10
-        passes = 3
+        passes = 2
         xray   = true
         popups = true
     }
