@@ -9,9 +9,9 @@ alias lta='lsd --tree --all'
 # core utils
 alias m='mkdir --parents --verbose'
 alias cp='cp --interactive --verbose'
-alias rm='rm --interactive --recursive --dir'
+alias rm='rm --interactive=once --recursive --dir'
 alias du='du --human-readable'
-alias df='df --human-readbale'
+alias df='df --human-readable'
 alias mv='mv --interactive --verbose'
 alias ln='ln --interactive --verbose'
 
@@ -29,9 +29,6 @@ alias sn='sudoedit'
 
 # su
 alias s='sudo '
-
-# page previous command
-alias pagep='$(fc -s 2>&1) | $PAGER'
 
 # tops
 alias bt='btop'
