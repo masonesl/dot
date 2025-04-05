@@ -2,9 +2,11 @@
 
 function cn
 {
-    pushd $1 > /dev/null
+    # `c` is assumed to be zoxide
+
+    c ${1:-.}
     nvim .
-    popd > /dev/null
+    c - > /dev/null
 }
 
 cn $@
