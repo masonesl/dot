@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+function tn()
+{
+    if [ -n $1 ] ; then
+        c $1
+    fi
+
+    tmux new-session -s "$(basename $(pwd))"
+
+    c - > /dev/null
+}
+
+tn $@
