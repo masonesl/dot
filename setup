@@ -2,6 +2,8 @@
 
 CWD=$(cd -- $(dirname $0) && pwd)
 
+set -x
+
 function getdistro
 {
     [ -r /etc/os-release ]                                     \
@@ -32,7 +34,7 @@ function getpkgs
 
     case "$PROG@$DISTRO" in
         zsh@arch)
-            echo zsh lsd starship zoxide fzf
+            echo zsh starship zoxide fzf
             ;;
         zsh@gentoo)
             echo app-shells/{zsh,starship,zoxide,fzf}
@@ -62,10 +64,10 @@ function getpkgs
             echo app-misc/tmux
             ;;
         extras@arch)
-            echo lsd ripgrep fd bat
+            echo lsd ripgrep fd bat xdg-desktop-portal-hyprland
             ;;
         extras@gentoo)
-            echo sys-apps/{lsd,ripgrep,fd,bat}
+            echo sys-apps/{lsd,ripgrep,fd,bat} gui-libs/xdg-desktop-portal-hyprland
             ;;
         *)
             echo "No package preset for program '$PROG' on $DISTRO" >&2
@@ -118,7 +120,7 @@ function linkconfig
             DST=$CONF/nvim
             ;;
         hypr)
-            touch $CWD/hypr/override.hl
+            touch ./hypr/override.hl
             DST=$CONF/hypr
             ;;
         tmux)
@@ -146,13 +148,14 @@ function linkconfigs
 function selectpreset
 {
     local PRESET=$1
-    local PRESET_FILE=./hypr/presets/${PRESET:-default}.hl
+    local PRESET_FILE=./hypr/presets/$PRESET.hl
 
-    [ -f $PRESET_FILE ]                                    \
-        || echo "Hypr preset '$PRESET' does not exist" >&2 \
-        && return
+    if ! [ -f $PRESET_FILE ] ; then
+        echo "Hypr preset '$PRESET' does not exist" >&2
+        return
+    fi
 
-    sed --in-place "s|\(source = \./presets/\).\+|\1$1\.hl|" $PRESET_FILE
+    echo "source = ./presets/$PRESET.hl" > ./hypr/hyprland.conf
     
     if [[ $PRESET == excalibur ]] ; then
         hyprpm add https://github.com/Duckonaut/split-monitor-workspaces
