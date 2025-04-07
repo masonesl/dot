@@ -1,6 +1,9 @@
 return {
     'saghen/blink.cmp',
-    dependencies = { 'MeanderingProgrammer/render-markdown.nvim' },
+    dependencies = {
+        'MeanderingProgrammer/render-markdown.nvim',
+        'Kaiser-Yang/blink-cmp-avante'
+    },
     version      = '*',
     opts         = {
         keymap = { ['<C-e>'] = { 'show', 'show_documentation', 'hide_documentation' } },
@@ -12,12 +15,16 @@ return {
         },
         signature = { enabled = true },
         sources   = {
-            default   = { 'lsp', 'path', 'snippets', 'buffer', 'markdown' },
+            default   = { 'avante', 'lsp', 'path', 'snippets', 'buffer', 'markdown' },
             providers = {
                 markdown = {
                     name      = 'RenderMarkdown',
                     module    = 'render-markdown.integ.blink',
                     fallbacks = { 'lsp' }
+                },
+                avante = {
+                    name   = 'Avante',
+                    module = 'blink-cmp-avante',
                 }
             }
         }
