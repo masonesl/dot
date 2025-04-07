@@ -46,3 +46,5 @@ export FZF_DEFAULT_OPTS="
     --ansi
     --border=rounded
     --layout=reverse"
+
+[ -e $XDG_CONFIG_HOME/zsh/.env ] && source $XDG_CONFIG_HOME/zsh/.env
