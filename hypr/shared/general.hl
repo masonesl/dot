@@ -1,10 +1,10 @@
 source = ./rose-pine.hl
 
 general {
-    border_size = 2
+    border_size = 3
 
-    gaps_in   = 4
-    gaps_out = 8
+    gaps_in  = 8
+    gaps_out = 12
 
     col.inactive_border = $muted
     col.active_border   = $iris

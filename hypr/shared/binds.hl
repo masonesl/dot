@@ -51,23 +51,45 @@ submap = reset
 bindm = $mainMod $moveMod, mouse:272, resizewindow
 
 # switch workspace
-bind = $mainMod, 1, $wscmd, 1
-bind = $mainMod, 2, $wscmd, 2
-bind = $mainMod, 3, $wscmd, 3
-bind = $mainMod, 4, $wscmd, 4
+bind = $mainMod, 1, workspace, $mainWorkspace
+bind = $mainMod, 2, workspace, $mediaWorkspace
+bind = $mainMod, 3, workspace, $gameLauncherWorkspace
+bind = $mainMod, 4, workspace, $extraWorkspace
 
-bind = $mainMod, G, $wscmd, name:game
+bind = $mainMod, G, workspace, $gameWorkspace
+bind = $mainMod, C, workspace, $codingWorkspace
 
 # move window to workspace
-bind = $mainMod $moveMod, 1, $wsmovesilentcmd, 1
-bind = $mainMod $moveMod, 2, $wsmovesilentcmd, 2
-bind = $mainMod $moveMod, 3, $wsmovesilentcmd, 3
-bind = $mainMod $moveMod, 4, $wsmovesilentcmd, 4
+bind = $mainMod $moveMod, 1, movetoworkspacesilent, $mainWorkspace
+bind = $mainMod $moveMod, 2, movetoworkspacesilent, $mediaWorkspace
+bind = $mainMod $moveMod, 3, movetoworkspacesilent, $gameLauncherWorkspace
+bind = $mainMod $moveMod, 4, movetoworkspacesilent, $extraWorkspace
+bind = $mainMod $moveMod, G, movetoworkspacesilent, $gameWorkspace
+bind = $mainMod $moveMod, C, movetoworkspacesilent, $codingWorkspace
 
-bind = $mainMod $launchMod, 1, $wsmovecmd, 1
-bind = $mainMod $launchMod, 2, $wsmovecmd, 2
-bind = $mainMod $launchMod, 3, $wsmovecmd, 3
-bind = $mainMod $launchMod, 4, $wsmovecmd, 4
+bind = $mainMod $launchMod, 1, movetoworkspace, $mainWorkspace
+bind = $mainMod $launchMod, 2, movetoworkspace, $mediaWorkspace
+bind = $mainMod $launchMod, 3, movetoworkspace, $gameLauncherWorkspace
+bind = $mainMod $launchMod, 4, movetoworkspace, $extraWorkspace
+bind = $mainMod $launchMod, G, movetoworkspace, $gameWorkspace
+bind = $mainMod $launchMod, C, movetoworkspace, $codingWorkspace
+
+# grouped windows
+bind = $mainMod, Q, submap, group
+submap = group
+
+bind = , N    , togglegroup
+bind = , minus, lockactivegroup, toggle
+bind = , H    , moveintogroup  , l
+bind = , J    , moveintogroup  , d
+bind = , K    , moveintogroup  , u
+bind = , L    , moveintogroup  , r
+
+bind   = , catchall, submap, reset
+submap = reset
+
+bind = $mainMod $moveMod, N, changegroupactive, f
+bind = $mainMod $moveMod, P, changegroupactive, b
 
 # brightness controls
 bindle = , XF86MonBrightnessUp,   exec, brightness adjust up

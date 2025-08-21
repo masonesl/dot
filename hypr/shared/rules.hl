@@ -1,10 +1,39 @@
+# gtk shells (ags, eww, etc)
 layerrule = ignorezero, gtk-layer-shell
 layerrule = blur,       gtk-layer-shell
 layerrule = xray off,   gtk-layer-shell
 
+# rofi
 layerrule = ignorezero, rofi
 layerrule = blur,       rofi
 layerrule = xray off,   rofi
 
-windowrulev2 = workspace name:game, class:(steam_app_)(.+)
-windowrulev2 = rounding 0         , class:(steam_app_)(.+)
+layerrule = ignorezero, icey-menu
+layerrule = blur,       icey-menu
+layerrule = xray off,   icey-menu
+
+# games
+windowrulev2 = workspace $gameWorkspace, class:(steam_app_)(.+)
+windowrulev2 = norounding              , class:(steam_app_)(.+)
+windowrulev2 = opaque                  , class:(steam_app_)(.+)
+windowrulev2 = noanim                  , class:(steam_app_)(.+)
+windowrulev2 = noblur                  , class:(steam_app_)(.+)
+windowrulev2 = noshadow                , class:(steam_app_)(.+)
+
+windowrulev2 = workspace $gameWorkspace, class:gamescope
+windowrulev2 = norounding              , class:gamescope
+windowrulev2 = opaque                  , class:gamescope
+windowrulev2 = noanim                  , class:gamescope
+windowrulev2 = noblur                  , class:gamescope
+windowrulev2 = noshadow                , class:gamescope
+
+# steam windows
+windowrulev2 = workspace 4 silent, class:steam
+windowrulev2 = float             , class:steam
+windowrulev2 = tile              , title:Steam
+
+# discord
+windowrulev2 = workspace 3 silent, initialTitle:Discord
+
+# spotify
+windowrulev2 = workspace 2 silent, class:spotify

@@ -1,19 +1,11 @@
-source = ./rose-pine.hl
-
 decoration {
-    rounding       = 8
+    rounding       = 12
     rounding_power = 4
 
     active_opacity   = 0.95
-    inactive_opacity = 0.95
+    inactive_opacity = 0.9
 
-    shadow {
-        render_power = 2
-        range        = 10
-
-        color_inactive = 0x00000000
-        color          = $highlightLow
-    }
+    shadow:enabled = false
 
     blur {
         size   = 10

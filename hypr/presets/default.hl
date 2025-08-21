@@ -6,5 +6,7 @@ source = ../shared/decoration.hl
 source = ../shared/animations.hl
 source = ../shared/binds.hl
 source = ../shared/rules.hl
+source = ../shared/workspaces.hl
+source = ../shared/groups.hl
 
 source = ../override.hl
