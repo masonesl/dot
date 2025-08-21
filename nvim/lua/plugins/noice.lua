@@ -5,5 +5,8 @@ return {
         'MunifTanjim/nui.nvim',
         'rcarriga/nvim-notify'
     },
+    keys = {
+        { '<Leader>nd', vim.cmd.NoiceDismiss }
+    },
     config = true
 }

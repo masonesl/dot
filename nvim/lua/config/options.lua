@@ -32,3 +32,5 @@ vim.opt.smartcase  = true
 vim.opt.showmode = false
 
 vim.opt.termguicolors = true
+
+vim.opt.colorcolumn = '100'

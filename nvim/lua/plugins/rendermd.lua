@@ -6,16 +6,12 @@ return {
     },
     opts = {
         heading = {
-            border         = true,
-            border_virtual = true,
-            icons          = { ' 󰴈 ', ' 󰮊 ', ' 󰫢 ', '  ', '  ', ' 󰪥 ', '  ' }
+            icons = { ' 󰴈 ', ' 󰮊 ', ' 󰫢 ', '  ', '  ', ' 󰪥 ', '  ' }
         },
         code = {
-            style         = 'normal',
-            border        = 'thick',
-            language_name = false,
-            left_pad      = 2,
-            language_pad  = 1
+            border       = 'thick',
+            left_pad     = 2,
+            language_pad = 1
         }
     }
 }

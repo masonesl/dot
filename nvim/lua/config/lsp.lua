@@ -36,7 +36,7 @@ local function lsp_attach_callback(event)
     set('<Leader>ws', vim.g.telescope_menu('lsp_dynamic_workspace_symbols'), '[W]orspace [S]ymbols')
     set('<Leader>rn', vim.lsp.buf.rename, '[R]e[N]ame')
     set('<Leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    set('dD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+    set('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
