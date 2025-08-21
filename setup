@@ -126,12 +126,19 @@ function linkconfig
         tmux)
             DST=$CONF/tmux
             ;;
+        extras/cleanhome/pythonrc)
+            DST=$CONF/python/pythonrc
+            ;;
+        extras/cleanhome/npmrc)
+            DST=$CONF/npm/npmrc
+            ;;
         *)
             return
             ;;
     esac
 
     if ! [ -e $DST ] ; then
+        mkdir --parents --verbose $(dirname $DST)
         ln --symbolic --verbose $CWD/$1 $DST
     else
         echo "Not linking '$1' to '$DST' because a file already exists"
@@ -168,6 +175,12 @@ function getallprogs
     echo zsh kitty nvim hypr tmux extras
 }
 
+function linkcleanhome
+{
+    linkconfig extras/cleanhome/pythonrc
+    linkconfig extras/cleanhome/npmrc
+}
+
 case $1 in
     install)
         if [ $2 = all ] ; then
@@ -185,6 +198,9 @@ case $1 in
         ;;
     preset)
         selectpreset $2
+        ;;
+    keepcleanhome)
+        linkcleanhome
         ;;
     everything)
         $CWD/setup install all
