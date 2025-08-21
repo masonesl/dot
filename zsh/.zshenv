@@ -21,10 +21,15 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export ANDROID_HOME="$XDG_DATA_HOME/android"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
-export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export WINEPREFIX="$XDG_DATA_HOME/wine"
+export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
 
 # programs
 export EDITOR='nvim'

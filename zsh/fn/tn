@@ -1,12 +1,15 @@
 #!/usr/bin/env zsh
 
-function tn()
+function tn
 {
     if [ -n $1 ] ; then
         c $1
     fi
 
-    tmux new-session -s "$(basename $(pwd))"
+    local CWD="$(pwd)"
+    local PROJ="$(basename ${CWD})"
+
+    tmux new-session -s ${PROJ}
 
     c - > /dev/null
 }

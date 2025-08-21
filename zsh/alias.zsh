@@ -33,3 +33,6 @@ alias s='sudo '
 # tops
 alias bt='btop'
 alias nt='nvtop'
+
+# aliases to keep a clean ~
+alias adb='HOME="$XDG_DATA_HOME"/android adb'
