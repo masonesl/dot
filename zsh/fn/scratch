@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+# open a scratch buffer in neovim with specified language
+function scratch
+{
+    if [[ -z $1 ]] ; then
+        echo No language specified >&2
+    else
+        FILE="/tmp/scratch.$1"
+        nvim $FILE
+        \rm $FILE
+    fi
+}
+
+scratch $@

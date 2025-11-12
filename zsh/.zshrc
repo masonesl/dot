@@ -3,7 +3,7 @@ source "$ZDOTDIR/alias.zsh"
 autoload -U compinit
 compinit
 
-autoload {cn,g,t,zp,tn}
+autoload {cn,g,t,zp,tn,scratch}
 
 compdef {g=git,t=tmux}
 
