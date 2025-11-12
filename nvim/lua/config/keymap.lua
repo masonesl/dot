@@ -33,21 +33,3 @@ vim.keymap.set('n', '<Leader>ti', function ()
     end
     print('shiftwidth set to ' .. vim.opt.shiftwidth:get() .. ' spaces')
 end)
-
-vim.keymap.set('n', '<Leader>ac', function ()
-    local win = vim.api.nvim_get_current_win()
-    local row, col = vim.api.nvim_win_get_cursor(win)
-    local line = vim.api.nvim_buf_get_lines(0, row - 1, row, false)[1]
-    local char = string.sub(line, col + 1, col + 1)
-
-    local reg  = vim.fn.input('Enter register : ')
-    local esc  = vim.api.nvim_replace_termcodes('<Esc>', true, false, true)
-
-    vim.fn.setreg(reg, '0f' .. char .. '100i ' .. esc .. col .. '|dwj')
-end)
-
-a = 1
-dskfjadksfjaksd = 2
-fkjdskf = 3
-fdjskfjsdkffksdajfksdjfksdajfk = 4
-
