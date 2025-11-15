@@ -16,11 +16,22 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     return open_floating_preview_default(contents, syntax, opts, ...)
 end
 
-local signs = { Error = '', Warn = '', Hint = '󰌶', Info = '' }
-for type, icon in pairs(signs) do
-    local hl = 'DiagnosticSign' .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN]  = '',
+            [vim.diagnostic.severity.HINT]  = '󰌶',
+            [vim.diagnostic.severity.INFO]  = '',
+        },
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+            [vim.diagnostic.severity.WARN]  = 'DiagnosticSignWarn',
+            [vim.diagnostic.severity.HINT]  = 'DiagnosticSignHint',
+            [vim.diagnostic.severity.INFO]  = 'DiagnosticSignInfo',
+        },
+    }
+})
 
 local function lsp_attach_callback(event)
     local function set(keys, func, desc, mode)
@@ -51,7 +62,6 @@ require('mason-lspconfig').setup({
         function (server)
             local config = {}
             config.capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
-
             require('lspconfig')[server].setup(config)
         end
     }
