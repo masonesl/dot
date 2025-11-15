@@ -20,10 +20,10 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y')
 vim.keymap.set({ 'n', 'v' }, '<Leader>p', '"+p')
 vim.keymap.set('n', '<Leader>P', '"+P')
 
-vim.keymap.set('v', 'J', ':move<Home>silent <End> \'>+1<CR>gv=gv')
-vim.keymap.set('v', 'K', ':move<Home>silent <End> \'<-2<CR>gv=gv')
+vim.keymap.set('x', 'J', ':move<Home>silent <End> \'>+1<CR>gv=gv')
+vim.keymap.set('x', 'K', ':move<Home>silent <End> \'<-2<CR>gv=gv')
 
-vim.keymap.set('v', 'p', 'p:silent let @"=@0<CR>')
+vim.keymap.set('x', 'p', 'p:silent let @"=@0<CR>')
 
 vim.keymap.set('n', '<Leader>ti', function ()
     if vim.opt.shiftwidth:get() == 4 then
