@@ -2,8 +2,6 @@
 
 CWD=$(cd -- $(dirname $0) && pwd)
 
-set -x
-
 function getdistro
 {
     [ -r /etc/os-release ]                                     \
@@ -63,6 +61,12 @@ function getpkgs
         tmux@gentoo)
             echo app-misc/tmux
             ;;
+        starship@arch)
+            echo starship
+            ;;
+        starship@gentoo)
+            echo app-shells/starship
+            ;;
         extras@arch)
             echo lsd ripgrep fd bat xdg-desktop-portal-hyprland
             ;;
@@ -108,6 +112,7 @@ function installprogs
 function linkconfig
 {
     local CONF=${XDG_CONFIG_HOME:-$HOME/.config}
+    local SRC=$1
 
     case $1 in
         zsh)
@@ -126,6 +131,10 @@ function linkconfig
         tmux)
             DST=$CONF/tmux
             ;;
+        starship)
+            SRC=starship.toml
+            DST=$CONF/starship.toml
+            ;;
         extras/cleanhome/pythonrc)
             DST=$CONF/python/pythonrc
             ;;
@@ -139,7 +148,7 @@ function linkconfig
 
     if ! [ -e $DST ] ; then
         mkdir --parents --verbose $(dirname $DST)
-        ln --symbolic --verbose $CWD/$1 $DST
+        ln --symbolic --verbose $CWD/$SRC $DST
     else
         echo "Not linking '$1' to '$DST' because a file already exists"
     fi
@@ -172,7 +181,7 @@ function selectpreset
 
 function getallprogs
 {
-    echo zsh kitty nvim hypr tmux extras
+    echo zsh kitty nvim hypr tmux starship extras
 }
 
 function linkcleanhome
@@ -205,5 +214,7 @@ case $1 in
     everything)
         $CWD/setup install all
         $CWD/setup link all
+        $CWD/setup preset default
+        $CWD/setup keepcleanhome
         ;;
 esac
