@@ -67,6 +67,12 @@ function getpkgs
         starship@gentoo)
             echo app-shells/starship
             ;;
+        fonts@arch)
+            echo ttf-jetbrains-mono-nerd ttf-noto-nerd
+            ;;
+        fonts@gentoo)
+            echo media-fonts/{jetbrains-mono-nerd,noto}
+            ;;
         extras@arch)
             echo lsd ripgrep fd bat xdg-desktop-portal-hyprland
             ;;
@@ -181,7 +187,7 @@ function selectpreset
 
 function getallprogs
 {
-    echo zsh kitty nvim hypr tmux starship extras
+    echo zsh kitty nvim hypr tmux starship fonts extras
 }
 
 function linkcleanhome
