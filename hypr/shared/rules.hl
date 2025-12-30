@@ -1,39 +1,74 @@
 # gtk shells (ags, eww, etc)
-layerrule = ignorezero, gtk-layer-shell
-layerrule = blur,       gtk-layer-shell
-layerrule = xray off,   gtk-layer-shell
+layerrule {
+    name            = gtk-layer-shell-rule
+    match:namespace = gtk-layer-shell
+    xray            = off
+}
 
 # rofi
-layerrule = ignorezero, rofi
-layerrule = blur,       rofi
-layerrule = xray off,   rofi
+layerrule {
+    name            = rofi-rule
+    match:namespace = rofi
+    xray            = off
+}
 
-layerrule = ignorezero, icey-menu
-layerrule = blur,       icey-menu
-layerrule = xray off,   icey-menu
+# icey widgets
+layerrule {
+    name            = icey-widgets-rule
+    match:namespace = icey-menu
+    xray            = off
+}
 
 # games
-windowrulev2 = workspace $gameWorkspace, class:(steam_app_)(.+)
-windowrulev2 = norounding              , class:(steam_app_)(.+)
-windowrulev2 = opaque                  , class:(steam_app_)(.+)
-windowrulev2 = noanim                  , class:(steam_app_)(.+)
-windowrulev2 = noblur                  , class:(steam_app_)(.+)
-windowrulev2 = noshadow                , class:(steam_app_)(.+)
+windowrule {
+    name        = steam-games-rule
+    match:class = (steam_app_)(.+)
 
-windowrulev2 = workspace $gameWorkspace, class:gamescope
-windowrulev2 = norounding              , class:gamescope
-windowrulev2 = opaque                  , class:gamescope
-windowrulev2 = noanim                  , class:gamescope
-windowrulev2 = noblur                  , class:gamescope
-windowrulev2 = noshadow                , class:gamescope
+    workspace = $gameWorkspace
+    rounding  = 0
+    no_anim   = on
+    no_blur   = on
+    no_shadow = on
+    opaque    = on
+}
+
+windowrule {
+    name        = gamescope-rule
+    match:class = gamescope
+
+    workspace = $gameWorkspace
+    rounding  = 0
+    no_anim   = on
+    no_blur   = on
+    no_shadow = on
+    opaque    = on
+}
 
 # steam windows
-windowrulev2 = workspace 4 silent, class:steam
-windowrulev2 = float             , class:steam
-windowrulev2 = tile              , title:Steam
+windowrule {
+    name        = steam-windows-rule
+    match:class = steam
+
+    workspace = $gameLauncherWorkspace silent
+    float     = true
+}
+
+windowrule {
+    name        = main-steam-rule
+    match:title = Steam
+    tile        = true
+}
 
 # discord
-windowrulev2 = workspace 3 silent, initialTitle:Discord
+windowrule {
+    name                = discord-rule
+    match:initial_title = Discord
+    workspace           = $extraWorkspace silent
+}
 
 # spotify
-windowrulev2 = workspace 2 silent, class:spotify
+windowrule {
+    name        = spotify-rule
+    match:class = spotify
+    workspace   = $mediaWorkspace silent
+}
