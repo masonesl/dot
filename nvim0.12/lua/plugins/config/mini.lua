@@ -1,0 +1,5 @@
+require('mini.pairs').setup()
+require('mini.ai').setup()
+require('mini.align').setup()
+require('mini.surround').setup()
+require('mini.files').setup()
